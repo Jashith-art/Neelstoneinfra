@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Web Design Puzzle Challenge</title>
+<style>
+:root{--bg:#f3f7fb;--ink:#172033;--muted:#68738a;--line:#dfe4ef;--accent:#3157d5}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 10% 0%,#e7f8ef 0,transparent 28%),radial-gradient(circle at 90% 15%,#e8edff 0,transparent 30%),var(--bg);color:var(--ink);font-family:system-ui,-apple-system,"Segoe UI",sans-serif}
+.app{width:min(1200px,94%);margin:auto;padding:28px 0 40px}.hidden{display:none!important}
+.start-screen{min-height:88vh;display:grid;place-items:center}.start-card{width:min(560px,100%);background:#fff;border:1px solid var(--line);border-radius:28px;padding:42px;text-align:center;box-shadow:0 20px 55px #17203314}
+.start-icon{font-size:4rem}.eyebrow{font-size:.72rem;letter-spacing:.14em;font-weight:800;color:var(--accent)}.start-card h1{font-size:clamp(2rem,5vw,3.2rem);line-height:1;margin:8px 0 12px}.start-card p{color:var(--muted);line-height:1.6}
+label{display:block;text-align:left;font-weight:800;margin:24px 0 8px}input{width:100%;padding:14px;border:2px solid #dce2ee;border-radius:12px;font:inherit}.start-btn,.submit{width:100%;margin-top:14px;background:linear-gradient(135deg,#3157d5,#4d6ee0);color:white;padding:15px;border:0;border-radius:11px;font-weight:800}.error{color:#b33!important;min-height:20px}
+header{display:flex;justify-content:space-between;gap:24px;align-items:flex-start}h1{font-size:clamp(2rem,4vw,3.5rem);line-height:1;margin:0}.intro{color:var(--muted)}.scorebox{background:#172033;color:#fff;border-radius:20px;padding:15px 20px;text-align:center}.scorebox span,.scorebox small{display:block;font-size:.7rem;opacity:.8}.scorebox strong{font-size:2.3rem}
+.brief,.visual-tip{display:flex;gap:12px;align-items:center;padding:14px 18px;border-radius:15px;margin:18px 0}.brief{background:#eefaf4;border:1px solid #d5e2df}.visual-tip{background:#fff9df;border:1px solid #f0e1a1}
+.workspace{display:grid;grid-template-columns:290px 1fr;gap:18px}.pieces,.canvas-wrap{background:#fff;border:1px solid var(--line);border-radius:20px;padding:18px;box-shadow:0 8px 25px #1720330b}.hint{font-size:.82rem;color:var(--muted)}#pieces{display:grid;gap:10px}
+.piece{background:#fff;border:1px solid var(--line);border-radius:14px;padding:11px;cursor:grab;display:flex;align-items:center;gap:11px}.piece:hover{border-color:#aebcf0;box-shadow:0 7px 16px #3157d51a}.picon{font-size:1.55rem}.piece small{display:block;color:var(--muted);font-size:.72rem}.piece.used{opacity:.42}
+.canvas-label{display:flex;justify-content:space-between;color:var(--muted);font-size:.75rem;font-weight:800;margin-bottom:10px}.canvas{min-height:570px;border:2px dashed #cbd2e2;border-radius:15px;padding:12px;display:flex;flex-direction:column;gap:8px;background:#f8faff}
+.dropzone{min-height:78px;border:2px dashed #cbd2e2;border-radius:12px;padding:8px;color:#8b94a7;display:flex;flex-direction:column;gap:8px;justify-content:center}.dropzone.over{background:#edf1ff;border-color:var(--accent)}
+.placed{border:1px solid #d8deea;border-radius:12px;padding:14px;background:#fff;cursor:grab}.placed.nav{display:flex;justify-content:space-between;background:#172033;color:#fff}.placed.hero{padding:24px;background:linear-gradient(135deg,#eaf0ff,#f1fff8)}.placed.image{min-height:110px;background:linear-gradient(135deg,#d9e4ff,#dff8eb);display:grid;place-items:center;font-size:1.5rem}.placed.cta{background:var(--accent);color:#fff;text-align:center}
+button{font:inherit;border:0;border-radius:11px;padding:11px 14px;cursor:pointer;font-weight:750}#reset{width:100%;margin-top:14px;background:#edf0f5}.bottom{margin-top:18px;display:flex;gap:16px;align-items:center;justify-content:space-between}.rubric{display:flex;gap:8px;flex-wrap:wrap;color:var(--muted);font-size:.75rem}.rubric span{background:#fff;border:1px solid var(--line);padding:8px 10px;border-radius:9px}
+.submit{width:auto;margin:0}.modal{position:fixed;inset:0;background:#0b111fcc;display:grid;place-items:center;padding:20px}.modal-card{background:#fff;border-radius:24px;padding:34px;max-width:480px;width:100%;text-align:center}.trophy{font-size:3rem}.student-result{background:#f3f6fb;border-radius:12px;padding:12px;margin:15px 0;text-align:left}.student-result span{display:block;font-size:.72rem;color:var(--muted)}.student-result strong{font-size:1.25rem}.final-score strong{font-size:4rem}.final-score span{font-size:1.3rem;color:var(--muted)}.status{margin:15px 0;padding:12px;border-radius:10px;background:#eaf8f0;color:#12653d}.locked{font-weight:700;color:#b33}
+@media(max-width:800px){header{flex-direction:column}.workspace{grid-template-columns:1fr}.bottom{flex-direction:column;align-items:stretch}.submit{width:100%}.start-card{padding:28px 22px}}
+</style>
+</head>
+<body><main class="app">
+<section id="startScreen" class="start-screen"><div class="start-card">
+<div class="start-icon">🧩</div><div class="eyebrow">MYP 2 DESIGN • FORMATIVE ASSESSMENT</div>
+<h1>Web Design Puzzle Challenge</h1><p>Build an effective informational webpage. Experiment freely, improve your score, and submit once.</p>
+<label for="studentName">👤 Enter your name</label><input id="studentName" maxlength="60" placeholder="Enter your full name">
+<button id="startGame" class="start-btn">🚀 START THE GAME</button><p id="nameError" class="error"></p>
+</div></section>
+<section id="gameScreen" class="hidden">
+<header><div><div class="eyebrow">🧩 MYP 2 DESIGN • FORMATIVE ASSESSMENT</div><h1>Web Design Puzzle Challenge</h1><p class="intro">Student: <strong id="displayName"></strong></p></div><div class="scorebox"><span>⭐ LIVE SCORE</span><strong id="score">0</strong><small>/ 50</small></div></header>
+<section class="brief"><span style="font-size:2rem">🌱</span><div><strong>Mission:</strong> Design a clear Eco Awareness webpage for school students. Aim for strong hierarchy, logical layout, audience suitability, navigation and readability.</div></section>
+<div class="visual-tip">💡 <strong>Design tip:</strong> What should users see first? What should they click? What should be easiest to read?</div>
+<div class="workspace"><aside class="pieces"><h2>🎨 Design Pieces</h2><p class="hint"></p><div id="pieces"></div><button id="reset">↻ Reset & Redesign</button></aside>
+<section class="canvas-wrap"><div class="canvas-label"><span>🖥️ YOUR WEBPAGE</span><span id="message">Start arranging!</span></div><div id="canvas" class="canvas"></div></section></div>
+<section class="bottom"><div class="rubric"><span>🏗️ Hierarchy <b id="r1">0</b>/10</span><span>📐 Layout <b id="r2">0</b>/10</span><span>👥 Audience <b id="r3">0</b>/10</span><span>🧭 Navigation <b id="r4">0</b>/10</span><span>👁️ Readability <b id="r5">0</b>/10</span></div><button id="submit" class="submit">🔒 FINAL SUBMISSION — LOCK DESIGN</button></section>
+</section>
+<div id="modal" class="modal hidden"><div class="modal-card"><div class="trophy">🏆</div><div class="eyebrow">FINAL SUBMISSION LOCKED</div><h2>Submission Complete!</h2><div class="student-result"><span>👤 Student</span><strong id="finalName"></strong></div><div class="final-score"><strong id="finalScore">0</strong><span>/ 50</span></div><div class="status">🔒 <strong>Submission Status: FINAL & LOCKED</strong></div><p id="feedback"></p><p class="locked">You cannot redesign or resubmit this attempt.</p></div></div>
+</main>
+<script>
+(()=>{const P=[
+["nav","🧭","Navigation Bar","Helps users move around","<strong>🌱 Eco Awareness</strong><span>Home • Tips • Projects • Contact</span>"],
+["title","🔠","Main Heading","Clear page title","<h2>Make Our School Greener</h2><p>Simple actions can create a big difference.</p>"],
+["intro","💬","Introduction","Audience-friendly text","<strong>🌍 Why it matters</strong><p>Discover practical ways students can reduce waste, save energy and care for our environment.</p>"],
+["image","🖼️","Supporting Image","Visual supporting the message","🌳 🌎 🌱<br><small>Eco-friendly visual</small>"],
+["tips","📋","Information Section","Organised key information","<h3>3 Easy Eco Actions</h3><p>♻ Reduce waste • 💧 Save water • ⚡ Save energy</p>"],
+["cta","👉","Action Button","Clear audience action","<strong>Take the Eco Challenge →</strong>"],
+["footer","🔗","Footer","Useful closing information","<small>Eco Awareness Campaign • Ela Green School • © 2026</small>"]];
+const S=[["top","＋"],["main","＋"],["support","＋"],["bottom","＋"]];
+let state={top:[],main:[],support:[],bottom:[]},locked=false,student="";
+const $=id=>document.getElementById(id);
+function renderPieces(){$("pieces").innerHTML="";P.forEach(p=>{let e=document.createElement("div");e.className="piece";e.draggable=!locked;e.dataset.id=p[0];e.innerHTML="<span class=picon>"+p[1]+"</span><div><strong>"+p[2]+"</strong><small>"+p[3]+"</small></div>";if(Object.values(state).flat().includes(p[0]))e.classList.add("used");e.ondragstart=x=>x.dataTransfer.setData("text/plain",p[0]);$("pieces").appendChild(e)})}
+function renderCanvas(){$("canvas").innerHTML="";S.forEach(s=>{let z=document.createElement("div");z.className="dropzone";z.dataset.slot=s[0];let ids=state[s[0]];if(!ids.length)z.textContent=s[1];ids.forEach(id=>{let p=P.find(x=>x[0]==id),e=document.createElement("div");e.className="placed "+(id=="nav"?"nav ":"")+(id=="title"?"hero ":"")+(id=="image"?"image ":"")+(id=="cta"?"cta ":"");e.draggable=!locked;e.innerHTML=p[4];e.ondragstart=x=>{x.dataTransfer.setData("text/plain",id);x.dataTransfer.setData("source",s[0])};z.appendChild(e)});z.ondragover=e=>{if(!locked){e.preventDefault();z.classList.add("over")}};z.ondragleave=()=>z.classList.remove("over");z.ondrop=e=>{e.preventDefault();z.classList.remove("over");if(locked)return;let id=e.dataTransfer.getData("text/plain"),src=e.dataTransfer.getData("source");if(src)state[src]=state[src].filter(x=>x!=id);else Object.keys(state).forEach(k=>state[k]=state[k].filter(x=>x!=id));state[s[0]].push(id);render();$("message").textContent="✨ Nice! Keep refining your layout."};$("canvas").appendChild(z)})}
+function calc(){let q={hierarchy:0,layout:0,audience:0,navigation:0,readability:0},flat=Object.entries(state).flatMap(([slot,ids])=>ids.map((id,index)=>({id,slot,index}))),has=id=>flat.some(x=>x.id==id);if(has("nav")&&flat.find(x=>x.id=="nav").slot=="top")q.navigation=10;else if(has("nav"))q.navigation=5;if(has("title")&&flat.find(x=>x.id=="title").slot=="main"&&flat.find(x=>x.id=="title").index==0)q.hierarchy+=6;if(has("tips")&&["main","support"].includes(flat.find(x=>x.id=="tips").slot))q.hierarchy+=4;if(has("footer")&&flat.find(x=>x.id=="footer").slot=="bottom")q.layout=10;else if(has("footer"))q.layout=5;if(has("intro")&&flat.find(x=>x.id=="intro").slot=="main")q.audience+=5;if(has("cta")&&flat.find(x=>x.id=="cta").slot=="support")q.audience+=5;if(has("image")&&flat.find(x=>x.id=="image").slot=="support")q.readability+=5;if(has("tips")&&flat.find(x=>x.id=="tips").slot=="support")q.readability+=5;let total=Object.values(q).reduce((a,b)=>a+b,0);$("score").textContent=total;["hierarchy","layout","audience","navigation","readability"].forEach((k,i)=>$("r"+(i+1)).textContent=q[k]);return total}
+function render(){renderPieces();renderCanvas();calc()}
+$("startGame").onclick=()=>{student=$("studentName").value.trim();if(!student){$("nameError").textContent="Please enter your name before starting.";return}$("displayName").textContent=student;$("startScreen").classList.add("hidden");$("gameScreen").classList.remove("hidden");render()};
+$("studentName").onkeydown=e=>{if(e.key=="Enter")$("startGame").click()};
+$("reset").onclick=()=>{if(locked)return;state={top:[],main:[],support:[],bottom:[]};$("message").textContent="🔄 Design reset. Try a different idea.";render()};
+$("submit").onclick=()=>{if(locked)return;let total=calc();if(!confirm("Submit this design for "+student+"? After submission it will be locked."))return;locked=true;$("submit").disabled=true;$("reset").disabled=true;renderPieces();renderCanvas();$("finalName").textContent=student;$("finalScore").textContent=total;$("feedback").textContent=total>=45?"Excellent design thinking! Your layout strongly supports communication.":total>=35?"Good design! Your page meets many communication needs.":"Keep learning: strong webpages need clear hierarchy, audience focus, navigation and readability.";$("modal").classList.remove("hidden");$("message").textContent="🔒 FINAL SUBMISSION LOCKED."};
+})();
+</script></body></html>
